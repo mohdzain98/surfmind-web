@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://surfmind.vercel.app/sitemap.xml
