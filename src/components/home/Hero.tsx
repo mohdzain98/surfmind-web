@@ -50,20 +50,79 @@ function HeroBackground() {
             />
           </pattern>
         </defs>
-        <rect width="100%" height="100%" fill="url(#heroGrid)" opacity="0.06" />
+        <rect width="100%" height="100%" fill="url(#heroGrid)" opacity="0.10" />
 
-        <circle cx="-60" cy="-60" r="320" fill="none" stroke="#8DA399" strokeWidth="0.8" opacity="0.18" />
-        <circle cx="-60" cy="-60" r="480" fill="none" stroke="#8DA399" strokeWidth="0.6" opacity="0.10" />
-        <circle cx="-60" cy="-60" r="640" fill="none" stroke="#D8C3B5" strokeWidth="0.6" opacity="0.12" />
-        <circle cx="1300" cy="900" r="380" fill="none" stroke="#D8C3B5" strokeWidth="0.8" opacity="0.16" />
-        <circle cx="1300" cy="900" r="560" fill="none" stroke="#8DA399" strokeWidth="0.6" opacity="0.09" />
+        <circle
+          cx="-60"
+          cy="-60"
+          r="320"
+          fill="none"
+          stroke="#8DA399"
+          strokeWidth="0.8"
+          opacity="0.18"
+        />
+        <circle
+          cx="-60"
+          cy="-60"
+          r="480"
+          fill="none"
+          stroke="#8DA399"
+          strokeWidth="0.6"
+          opacity="0.10"
+        />
+        <circle
+          cx="-60"
+          cy="-60"
+          r="640"
+          fill="none"
+          stroke="#D8C3B5"
+          strokeWidth="0.6"
+          opacity="0.12"
+        />
+        <circle
+          cx="1300"
+          cy="900"
+          r="380"
+          fill="none"
+          stroke="#D8C3B5"
+          strokeWidth="0.8"
+          opacity="0.16"
+        />
+        <circle
+          cx="1300"
+          cy="900"
+          r="560"
+          fill="none"
+          stroke="#8DA399"
+          strokeWidth="0.6"
+          opacity="0.09"
+        />
 
         {[
-          [120, 80], [680, 140], [920, 60], [240, 480], [820, 380], [440, 320],
+          [120, 80],
+          [680, 140],
+          [920, 60],
+          [240, 480],
+          [820, 380],
+          [440, 320],
         ].map(([x, y], i) => (
           <g key={i} transform={`translate(${x}, ${y})`} opacity="0.18">
-            <line x1="-5" y1="0" x2="5" y2="0" stroke="#1A1A1A" strokeWidth="0.8" />
-            <line x1="0" y1="-5" x2="0" y2="5" stroke="#1A1A1A" strokeWidth="0.8" />
+            <line
+              x1="-5"
+              y1="0"
+              x2="5"
+              y2="0"
+              stroke="#1A1A1A"
+              strokeWidth="0.8"
+            />
+            <line
+              x1="0"
+              y1="-5"
+              x2="0"
+              y2="5"
+              stroke="#1A1A1A"
+              strokeWidth="0.8"
+            />
           </g>
         ))}
       </svg>

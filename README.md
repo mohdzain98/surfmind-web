@@ -4,12 +4,12 @@ Marketing and landing site for the [SurfMind Chrome extension](https://github.co
 
 ## Pages
 
-| Route | Description |
-|---|---|
-| `/` | Landing page — hero, screenshot carousel, features, how it works, CTA |
-| `/privacy` | Privacy Policy |
-| `/terms` | Terms of Service |
-| `/contact` | Contact form (Formspree) |
+| Route      | Description                                                           |
+| ---------- | --------------------------------------------------------------------- |
+| `/`        | Landing page — hero, screenshot carousel, features, how it works, CTA |
+| `/privacy` | Privacy Policy                                                        |
+| `/terms`   | Terms of Service                                                      |
+| `/contact` | Contact form (Formspree)                                              |
 
 ## Tech Stack
 
@@ -35,20 +35,20 @@ npm run dev
 
 ## Environment Variables
 
-| Variable | Description |
-|---|---|
+| Variable                  | Description                      |
+| ------------------------- | -------------------------------- |
 | `VITE_FORMSPREE_ENDPOINT` | Your Formspree form endpoint URL |
 
 Copy `.env.example` to `.env` and replace `FORM_ID` with your actual Formspree form ID from [formspree.io](https://formspree.io).
 
 ## Scripts
 
-| Command | Description |
-|---|---|
-| `npm run dev` | Start local dev server |
-| `npm run build` | Type-check and build for production |
+| Command           | Description                          |
+| ----------------- | ------------------------------------ |
+| `npm run dev`     | Start local dev server               |
+| `npm run build`   | Type-check and build for production  |
 | `npm run preview` | Preview the production build locally |
-| `npm run lint` | Run ESLint |
+| `npm run lint`    | Run ESLint                           |
 
 ## Project Structure
 

@@ -5,13 +5,13 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Update this to your production domain
-const SITE_URL = "https://surfmind.vercel.app";
+const SITE_URL = "https://surfmind.docschat.in";
 
 const routes = [
-  { path: "/",        priority: "1.0", changefreq: "weekly"  },
+  { path: "/", priority: "1.0", changefreq: "weekly" },
   { path: "/contact", priority: "0.7", changefreq: "monthly" },
-  { path: "/privacy", priority: "0.5", changefreq: "yearly"  },
-  { path: "/terms",   priority: "0.5", changefreq: "yearly"  },
+  { path: "/privacy", priority: "0.5", changefreq: "yearly" },
+  { path: "/terms", priority: "0.5", changefreq: "yearly" },
 ];
 
 const today = new Date().toISOString().split("T")[0];

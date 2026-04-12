@@ -11,7 +11,9 @@ export default function Footer() {
       <div className="max-w-5xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
         {/* Brand */}
         <div className="text-center sm:text-left">
-          <p className="font-serif text-lg font-semibold text-charcoal">SurfMind</p>
+          <p className="font-serif text-lg font-semibold text-charcoal">
+            SurfMind
+          </p>
           <p className="text-xs text-charcoal/50 mt-1">
             &copy; {new Date().getFullYear()} SurfMind. All rights reserved.
           </p>
