@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://surfmind.vercel.app/sitemap.xml
+Sitemap: https://surfmind.docschat.in/sitemap.xml
