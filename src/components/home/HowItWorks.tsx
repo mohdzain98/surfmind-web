@@ -2,12 +2,12 @@ const steps = [
   {
     number: "01",
     title: "Track",
-    desc: "SurfMind silently records pages you visit and bookmarks you save — stored locally in your browser, never in the cloud.",
+    desc: "SurfMind captures the pages you visit and bookmarks you save, keeping pending records locally before secure synchronization.",
   },
   {
     number: "02",
     title: "Ask",
-    desc: "Type a natural language query. SurfMind converts your local history into vector embeddings on the fly.",
+    desc: "Type a natural language query. SurfMind searches indexed history and bookmarks for relevant context.",
   },
   {
     number: "03",
@@ -18,7 +18,7 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="py-20 px-6">
+    <section id="how-it-works" className="scroll-mt-20 py-20 px-6">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12">
           <p className="text-xs font-medium text-sage uppercase tracking-widest mb-3">

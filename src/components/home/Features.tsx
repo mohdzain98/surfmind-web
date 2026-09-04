@@ -139,7 +139,7 @@ const features = [
   {
     icon: <IconShield />,
     title: "Local Storage First",
-    desc: "Your browsing data stays on your device. It's only sent to the server when you perform a search — nothing else.",
+    desc: "SurfMind keeps pending records locally, then securely syncs searchable data in batches or when you need fresh results.",
   },
   {
     icon: <IconCog />,
@@ -155,7 +155,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="py-20 px-6 bg-white/50">
+    <section id="features" className="scroll-mt-20 py-20 px-6 bg-white/50">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <p className="text-xs font-medium text-sage uppercase tracking-widest mb-3">
