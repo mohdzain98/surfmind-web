@@ -3,12 +3,14 @@ import img1 from "../../assets/1.png";
 import img2 from "../../assets/2.png";
 import img3 from "../../assets/3.png";
 import img4 from "../../assets/4.png";
+import img5 from "../../assets/5.png";
 
 const screenshots = [
   { src: img1, alt: "SurfMind — extension popup" },
   { src: img2, alt: "SurfMind — AI search results" },
   { src: img3, alt: "SurfMind — browsing history" },
   { src: img4, alt: "SurfMind — bookmark search" },
+  { src: img5, alt: "SurfMind — AI search results" },
 ];
 
 function ImageWithPadding({
