@@ -1,26 +1,28 @@
 # SurfMind — Web
 
-Marketing and landing site for the [SurfMind Chrome extension](https://github.com/mohdzain98/surfmind) — built with React, TypeScript, Tailwind CSS v4, and deployed on Vercel.
+Marketing and support site for the [SurfMind Chrome extension](https://surfmind.docschat.in/) — built with React, TypeScript, Tailwind CSS v4, and deployed on Vercel.
 
 ## Pages
 
-| Route      | Description                                                           |
-| ---------- | --------------------------------------------------------------------- |
-| `/`        | Landing page — hero, screenshot carousel, features, how it works, CTA |
-| `/privacy` | Privacy Policy                                                        |
-| `/terms`   | Terms of Service                                                      |
-| `/contact` | Contact form (Formspree)                                              |
+| Route      | Description                                                               |
+| ---------- | ------------------------------------------------------------------------- |
+| `/`        | Landing page — hero, screenshots, demo video, features, how it works, CTA |
+| `/privacy` | Privacy Policy                                                            |
+| `/terms`   | Terms of Service                                                          |
+| `/contact` | Contact form (Formspree)                                                  |
 
 ## Tech Stack
 
 - **React 19** + **TypeScript**
 - **Vite 8**
 - **Tailwind CSS v4** (`@tailwindcss/postcss`)
-- **React Router v7** (HashRouter)
+- **React Router v7** (BrowserRouter)
 - **Lucide React** — icons
 - **Formspree** — contact form backend
 
 ## Getting Started
+
+Use Node.js 20.19+ or 22.12+ and npm.
 
 ```bash
 # Install dependencies
@@ -43,12 +45,17 @@ Copy `.env.example` to `.env` and replace `FORM_ID` with your actual Formspree f
 
 ## Scripts
 
-| Command           | Description                          |
-| ----------------- | ------------------------------------ |
-| `npm run dev`     | Start local dev server               |
-| `npm run build`   | Type-check and build for production  |
-| `npm run preview` | Preview the production build locally |
-| `npm run lint`    | Run ESLint                           |
+| Command                | Description                             |
+| ---------------------- | --------------------------------------- |
+| `npm run dev`          | Start local dev server                  |
+| `npm run build`        | Type-check and build for production     |
+| `npm run preview`      | Preview the production build locally    |
+| `npm run lint`         | Run ESLint                              |
+| `npm run format`       | Format supported files with Prettier    |
+| `npm run format:check` | Check formatting without changing files |
+| `npm run sitemap`      | Regenerate `public/sitemap.xml`         |
+
+Husky runs lint-staged formatting and ESLint before each commit.
 
 ## Project Structure
 
@@ -60,6 +67,7 @@ src/
     home/
       Hero.tsx
       ImageCarousel.tsx
+      DemoVideo.tsx
       Features.tsx
       HowItWorks.tsx
       CtaBanner.tsx
@@ -69,7 +77,10 @@ src/
     Terms.tsx
     Contact.tsx
   assets/
-    1.png – 4.png   # Extension screenshots
+    1.png – 5.png   # Extension screenshots
+    webstore.png    # Chrome Web Store icon
+scripts/
+  generate-sitemap.js
 public/
   android-chrome-256x256.png
   favicon.svg
