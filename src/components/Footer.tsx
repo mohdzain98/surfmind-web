@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 const CHROME_STORE_URL =
   "https://chromewebstore.google.com/detail/surfmind-smarter-browsing/ladckalplikfcplbihpgfnlkonnpehkj";
 
-const GITHUB_URL = "https://github.com/mohdzain98/surfmind";
-
 export default function Footer() {
   return (
     <footer className="border-t border-clay/40 bg-[#f8f6f2]/80">
@@ -27,14 +25,6 @@ export default function Footer() {
           <Link to="/terms" className="hover:text-charcoal transition-colors">
             Terms of Service
           </Link>
-          <a
-            href={GITHUB_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-charcoal transition-colors"
-          >
-            GitHub
-          </a>
           <a
             href={CHROME_STORE_URL}
             target="_blank"

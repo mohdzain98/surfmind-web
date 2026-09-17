@@ -40,7 +40,7 @@ export default function Terms() {
           Terms of Service
         </h1>
         <p className="text-sm text-charcoal/50">
-          Effective Date: 14 July, 2024
+          Effective Date: 4 September, 2026
         </p>
         <div className="h-px bg-clay/40 mt-6" />
       </div>
@@ -67,12 +67,12 @@ export default function Terms() {
             save.
           </Li>
           <Li>
-            Stores browsing data locally on your device using Chrome local
-            storage.
+            Stores pending browsing data locally and synchronizes searchable
+            records with SurfMind's servers.
           </Li>
           <Li>
-            Transmits locally stored data to our servers only when you perform a
-            search query.
+            Sends data in batches, during scheduled background checks, when
+            relevant features are opened, and before searches.
           </Li>
           <Li>
             Uses AI and vector search technology to retrieve relevant results
@@ -106,16 +106,17 @@ export default function Terms() {
       <Section title="4. Data and Privacy">
         <ul className="space-y-1.5">
           <Li>
-            Your browsing data is stored locally on your device and is not
-            shared with third parties except as described in our Privacy Policy.
+            Browsing data may be stored locally and on SurfMind's servers as
+            described in our Privacy Policy.
           </Li>
           <Li>
-            Data is only transmitted to our servers when you initiate a search.
-            We use HTTPS for all transmissions.
+            Infrastructure, database, embedding, and AI providers may process
+            data only as needed to operate the service. We use HTTPS for data
+            transmission.
           </Li>
           <Li>
-            You can delete your locally stored data at any time through the
-            extension settings.
+            You can clear history or all SurfMind data through the extension
+            settings. Deletion may apply across intentionally linked browsers.
           </Li>
         </ul>
       </Section>
