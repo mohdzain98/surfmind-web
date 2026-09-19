@@ -34,24 +34,6 @@ function IconSearch() {
   );
 }
 
-function IconBookmark() {
-  return (
-    <svg
-      className="w-5 h-5"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={1.5}
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"
-      />
-    </svg>
-  );
-}
-
 function IconShield() {
   return (
     <svg
@@ -120,6 +102,29 @@ function IconMerge() {
   );
 }
 
+function IconDevices() {
+  return (
+    <svg
+      className="w-5 h-5"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      strokeWidth={1.5}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M9 17.25v1.007c0 .597-.237 1.17-.659 1.591L7.5 20.69m1.5-3.44h6m0 0v1.007c0 .597.237 1.17.659 1.591l.841.841m-1.5-3.44h1.5A2.25 2.25 0 0018.75 15V6.75A2.25 2.25 0 0016.5 4.5h-9a2.25 2.25 0 00-2.25 2.25V15a2.25 2.25 0 002.25 2.25H9z"
+      />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M18.75 9.75h.75A1.5 1.5 0 0121 11.25v7.5a1.5 1.5 0 01-1.5 1.5H18a1.5 1.5 0 01-1.5-1.5v-1.5"
+      />
+    </svg>
+  );
+}
+
 const features = [
   {
     icon: <IconBrain />,
@@ -129,12 +134,7 @@ const features = [
   {
     icon: <IconSearch />,
     title: "AI-Powered Search",
-    desc: "Ask SurfMind in plain English. Vector embeddings and FAISS retrieve the most relevant pages from your history instantly.",
-  },
-  {
-    icon: <IconBookmark />,
-    title: "Bookmark Integration",
-    desc: "Search through saved pages by content, not just title. Never lose a link you bookmarked months ago.",
+    desc: "Ask SurfMind in everyday language and quickly find the most relevant pages from your browsing history and bookmarks.",
   },
   {
     icon: <IconShield />,
@@ -150,6 +150,11 @@ const features = [
     icon: <IconMerge />,
     title: "Combined Mode",
     desc: "New search tab that searches browser history and bookmarks simultaneously — one query, complete results.",
+  },
+  {
+    icon: <IconDevices />,
+    title: "Cross-browser Search",
+    desc: "Link your browsers with a one-time code, then search history and bookmarks saved from any of them — no login required.",
   },
 ];
 
