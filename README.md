@@ -10,6 +10,7 @@ Marketing and support site for the [SurfMind Chrome extension](https://surfmind.
 | `/privacy` | Privacy Policy                                                            |
 | `/terms`   | Terms of Service                                                          |
 | `/contact` | Contact form (Formspree)                                                  |
+| `/admin`   | Protected operations dashboard for SurfMind administrators                |
 
 ## Tech Stack
 
@@ -37,11 +38,14 @@ npm run dev
 
 ## Environment Variables
 
-| Variable                  | Description                      |
-| ------------------------- | -------------------------------- |
-| `VITE_FORMSPREE_ENDPOINT` | Your Formspree form endpoint URL |
+| Variable                  | Description                                        |
+| ------------------------- | -------------------------------------------------- |
+| `VITE_FORMSPREE_ENDPOINT` | Your Formspree form endpoint URL                   |
+| `VITE_ADMIN_API_BASE_URL` | Admin API base URL, including the `/v1/admin` path |
 
-Copy `.env.example` to `.env` and replace `FORM_ID` with your actual Formspree form ID from [formspree.io](https://formspree.io).
+Copy `.env.example` to `.env`, replace `FORM_ID` with your actual Formspree form ID from [formspree.io](https://formspree.io), and point `VITE_ADMIN_API_BASE_URL` at the SurfMind backend admin API.
+
+The admin console stores its JWT only in `sessionStorage`, automatically signs out at the backend-provided expiry time, and redirects to `/admin/login` whenever a protected request returns `401`.
 
 ## Scripts
 
@@ -71,6 +75,18 @@ src/
       Features.tsx
       HowItWorks.tsx
       CtaBanner.tsx
+  admin/
+    AdminApp.tsx
+    AdminLayout.tsx
+    AdminLogin.tsx
+    api.ts
+    pages/
+      AdminDashboard.tsx
+      AdminLogs.tsx
+      AdminLlmUsage.tsx
+      AdminSearchMetrics.tsx
+      AdminAccountsList.tsx
+      AdminAccounts.tsx
   pages/
     Home.tsx
     Privacy.tsx
