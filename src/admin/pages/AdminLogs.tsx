@@ -4,6 +4,7 @@ import type { LogsResponse } from "../api";
 import { buildQuery } from "../api";
 import { formatDateTime } from "../format";
 import { useAdminResource } from "../useAdminResource";
+import NginxLogs from "../components/NginxLogs";
 import {
   EmptyState,
   ErrorState,
@@ -73,6 +74,25 @@ export default function AdminLogs() {
         eyebrow="Observability"
         title="System logs"
         description="Warnings, failures, provider fallbacks, sync events, and administrator actions from the last 30 days."
+        action={
+          <button
+            type="button"
+            onClick={() => {
+              const heading = document.getElementById("nginx-logs-title");
+              heading?.focus({ preventScroll: true });
+              heading?.scrollIntoView({
+                behavior: window.matchMedia("(prefers-reduced-motion: reduce)")
+                  .matches
+                  ? "instant"
+                  : "smooth",
+                block: "start",
+              });
+            }}
+            className="shrink-0 self-end rounded-lg border border-charcoal/12 bg-white px-4 py-2.5 text-xs font-semibold text-charcoal hover:bg-charcoal/5 sm:self-center"
+          >
+            Nginx logs ↓
+          </button>
+        }
       />
 
       <Panel className="mt-7 p-4 sm:p-5">
@@ -238,6 +258,7 @@ export default function AdminLogs() {
           </div>
         ) : null}
       </Panel>
+      <NginxLogs />
     </div>
   );
 }
