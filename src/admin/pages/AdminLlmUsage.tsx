@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 import type { LlmUsageResponse } from "../api";
 import { buildQuery } from "../api";
-import { formatNumber } from "../format";
+import { formatUsd, formatNumber } from "../format";
 import { useAdminResource } from "../useAdminResource";
 import {
   EmptyState,
@@ -37,7 +37,7 @@ export default function AdminLlmUsage() {
       <PageHeader
         eyebrow="AI operations"
         title="LLM usage"
-        description="Token consumption grouped by use case, provider, and model for the selected reporting window."
+        description="Token consumption and estimated costs, including embeddings, grouped by use case, provider, and model."
         action={
           <div className="flex items-center gap-2">
             <label className="text-[11px] font-semibold text-charcoal/50">
@@ -74,7 +74,7 @@ export default function AdminLlmUsage() {
         }
       />
 
-      {data ? (
+      {data && !loading && !error ? (
         <div className="mt-7 grid gap-4 sm:grid-cols-3">
           {[
             {
@@ -100,6 +100,32 @@ export default function AdminLlmUsage() {
         </div>
       ) : null}
 
+      {data && !loading && !error ? (
+        <Panel className="mt-5 p-5">
+          <p className="text-xs text-charcoal/45">Estimated cost (USD)</p>
+          <p className="mt-2 text-2xl font-semibold">
+            {formatUsd(data.totalCostUsd)}
+          </p>
+          <p className="mt-2 text-xs leading-5 text-charcoal/55">
+            Estimate for the returned rows in the selected window, based on
+            provider pricing. This is not a live billing reconciliation.
+          </p>
+          {data.unpricedRows > 0 ? (
+            <p className="mt-2 text-xs text-amber-700">
+              {data.unpricedRows} unpriced{" "}
+              {data.unpricedRows === 1 ? "row is" : "rows are"} excluded from
+              the estimate.
+            </p>
+          ) : null}
+          {data.usage.length >= 200 ? (
+            <p className="mt-2 text-xs text-amber-700">
+              Showing up to 200 usage groups. Totals cover only these returned
+              rows.
+            </p>
+          ) : null}
+        </Panel>
+      ) : null}
+
       <Panel className="mt-5 overflow-hidden">
         {loading ? <LoadingState label="Loading usage…" /> : null}
         {!loading && error ? (
@@ -108,7 +134,7 @@ export default function AdminLlmUsage() {
         {!loading && !error && !data?.usage.length ? (
           <EmptyState
             title="No model usage in this window"
-            description="Usage will appear after RAG or post-processing calls are recorded."
+            description="Usage will appear after embedding, RAG, or post-processing calls are recorded."
           />
         ) : null}
         {!loading && !error && data?.usage.length ? (
@@ -122,6 +148,9 @@ export default function AdminLlmUsage() {
                   <th className="px-5 py-3 text-right font-semibold">Input</th>
                   <th className="px-5 py-3 text-right font-semibold">Output</th>
                   <th className="px-5 py-3 text-right font-semibold">Calls</th>
+                  <th className="px-5 py-3 text-right font-semibold">
+                    Est. cost (USD)
+                  </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-charcoal/7 text-xs">
@@ -132,7 +161,7 @@ export default function AdminLlmUsage() {
                   >
                     <td className="px-5 py-4">
                       <span className="rounded-full bg-sage/12 px-2.5 py-1 text-[10px] font-semibold text-sage">
-                        {item.useCase.replace("_", " ")}
+                        {item.useCase.replaceAll("_", " ")}
                       </span>
                     </td>
                     <td className="px-5 py-4 font-medium text-charcoal/70">
@@ -149,6 +178,11 @@ export default function AdminLlmUsage() {
                     </td>
                     <td className="px-5 py-4 text-right font-semibold">
                       {formatNumber(item.calls)}
+                    </td>
+                    <td className="whitespace-nowrap px-5 py-4 text-right text-charcoal/60">
+                      {item.costUsd == null
+                        ? "Unpriced"
+                        : formatUsd(item.costUsd)}
                     </td>
                   </tr>
                 ))}

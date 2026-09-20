@@ -67,7 +67,12 @@ function HealthCard({
           {name}
         </span>
         <StatusPill ok={health.ok}>
-          {health.ok ? "Healthy" : "Issue"}
+          {health.status ||
+            (health.ok
+              ? "Healthy"
+              : health.detail === "systemctl not available"
+                ? "Unavailable"
+                : "Issue")}
         </StatusPill>
       </div>
       {name === "Redis" && health.ok ? (
@@ -94,7 +99,7 @@ function HealthCard({
       ) : null}
       {!health.ok ? (
         <p className="mt-3 break-words text-xs leading-5 text-red-600">
-          {health.detail || "Service check failed."}
+          {health.detail || health.status || "Service check failed."}
         </p>
       ) : null}
     </div>
@@ -138,6 +143,15 @@ export default function AdminDashboard() {
   const historyPages = stats?.total_pages_history ?? stats?.totalPagesHistory;
   const bookmarkPages =
     stats?.total_pages_bookmark ?? stats?.totalPagesBookmark;
+
+  const allHealthy = health
+    ? [
+        health.postgres,
+        health.pgvector,
+        health.redis,
+        ...Object.values(health.services ?? {}),
+      ].every((service) => service.ok)
+    : false;
 
   return (
     <div>
@@ -210,12 +224,8 @@ export default function AdminDashboard() {
                   Each dependency is checked independently.
                 </p>
               </div>
-              <StatusPill
-                ok={health.postgres.ok && health.pgvector.ok && health.redis.ok}
-              >
-                {health.postgres.ok && health.pgvector.ok && health.redis.ok
-                  ? "All systems operational"
-                  : "Attention required"}
+              <StatusPill ok={allHealthy}>
+                {allHealthy ? "All systems operational" : "Attention required"}
               </StatusPill>
             </div>
             <div className="grid gap-3 md:grid-cols-3">
@@ -230,8 +240,44 @@ export default function AdminDashboard() {
                 Icon={Server}
               />
               <HealthCard name="Redis" health={health.redis} Icon={Server} />
+              {Object.entries(health.services ?? {}).map(([name, service]) => (
+                <HealthCard
+                  key={name}
+                  name={name}
+                  health={service}
+                  Icon={Server}
+                />
+              ))}
             </div>
           </Panel>
+          {health.disk ? (
+            <Panel className="mt-7 p-5 sm:p-6">
+              <h2 className="font-serif text-xl font-semibold text-charcoal">
+                Root disk usage
+              </h2>
+              <p className="mt-2 text-sm text-charcoal/60">
+                {health.disk.usedPercent}% used
+              </p>
+              <progress
+                aria-label="Root filesystem usage"
+                max={100}
+                value={health.disk.usedPercent}
+                className="mt-3 h-3 w-full accent-sage"
+              />
+              <dl className="mt-4 grid grid-cols-3 gap-4 text-sm">
+                {[
+                  ["Total", health.disk.totalGb],
+                  ["Used", health.disk.usedGb],
+                  ["Free", health.disk.freeGb],
+                ].map(([label, value]) => (
+                  <div key={label}>
+                    <dt className="text-xs text-charcoal/45">{label}</dt>
+                    <dd className="mt-1 font-semibold">{value} GB</dd>
+                  </div>
+                ))}
+              </dl>
+            </Panel>
+          ) : null}
         </>
       ) : null}
     </div>

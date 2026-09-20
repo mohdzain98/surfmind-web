@@ -12,3 +12,17 @@ export const formatDateTime = (value: string) => {
 
 export const formatDuration = (value: number | null) =>
   value == null ? "—" : `${(value / 1000).toFixed(2)}s`;
+
+const usdFormatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "USD",
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 4,
+});
+
+export const formatUsd = (value: number | null | undefined) =>
+  value == null
+    ? "—"
+    : value > 0 && value < 0.0001
+      ? "<$0.0001"
+      : usdFormatter.format(value);

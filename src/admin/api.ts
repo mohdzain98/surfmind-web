@@ -74,7 +74,8 @@ export async function adminRequest<T>(
 
 export type ServiceHealth = {
   ok: boolean;
-  detail: string | null;
+  detail?: string | null;
+  status?: string | null;
   usedMemoryHuman?: string;
   connectedClients?: number;
   keyCount?: number;
@@ -84,6 +85,13 @@ export type HealthResponse = {
   postgres: ServiceHealth;
   pgvector: ServiceHealth;
   redis: ServiceHealth;
+  services?: Record<string, ServiceHealth>;
+  disk?: {
+    totalGb: number;
+    usedGb: number;
+    freeGb: number;
+    usedPercent: number;
+  };
 };
 
 export type StatsResponse = {
@@ -112,6 +120,13 @@ export type LogsResponse = {
   offset: number;
 };
 
+export type NginxLogsResponse = {
+  logType: "error" | "access";
+  lines: string[];
+  available: boolean;
+  detail: string | null;
+};
+
 export type LlmUsageRecord = {
   useCase: string;
   provider: string;
@@ -119,9 +134,14 @@ export type LlmUsageRecord = {
   inputTokens: number;
   outputTokens: number;
   calls: number;
+  costUsd: number | null;
 };
 
-export type LlmUsageResponse = { usage: LlmUsageRecord[] };
+export type LlmUsageResponse = {
+  usage: LlmUsageRecord[];
+  totalCostUsd: number;
+  unpricedRows: number;
+};
 
 export type SearchMetric = {
   flag: "history" | "bookmark" | "combined" | string;
