@@ -229,7 +229,8 @@ export default function Contact() {
             </h2>
             <ul className="mt-4 space-y-3">
               <GuidanceItem>
-                The SurfMind version and Chrome version you are using.
+                The SurfMind version and browser version (Chrome or Edge) you
+                are using.
               </GuidanceItem>
               <GuidanceItem>
                 A short sequence of steps that reproduces the issue.

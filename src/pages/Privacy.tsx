@@ -49,7 +49,7 @@ export default function Privacy() {
       <p className="text-sm text-charcoal/70 leading-relaxed mb-10">
         This Privacy Policy explains what information SurfMind processes, why it
         is processed, where it is stored, and the controls available to you when
-        you use our Chrome extension.
+        you use our Chrome and Edge extension.
       </p>
 
       <Section title="1. Information We Collect">
@@ -105,7 +105,7 @@ export default function Privacy() {
         <p className="font-medium text-charcoal/80 mb-2">Local Storage</p>
         <ul className="space-y-1.5 mb-4">
           <Li>
-            SurfMind uses Chrome local storage for pending browsing records,
+            SurfMind uses browser local storage for pending browsing records,
             extracted bookmark content, synchronization state, settings, and
             your random browser identifier.
           </Li>
@@ -231,8 +231,8 @@ export default function Privacy() {
               All URLs and content scripts
             </strong>{" "}
             — Allow SurfMind to extract readable headings and text from
-            supported pages you visit or bookmark. Chrome blocks access to
-            restricted browser pages.
+            supported pages you visit or bookmark. Chrome and Edge block access
+            to restricted browser pages.
           </Li>
         </ul>
       </Section>
