@@ -194,3 +194,19 @@ export function buildQuery(
   const query = params.toString();
   return query ? `?${query}` : "";
 }
+
+export type AccountSearchesResponse = {
+  syncAccountId: number;
+  total: number;
+  limit: number;
+  offset: number;
+  searches: Array<{
+    id: number;
+    query: string;
+    flag: string;
+    answer: string | null;
+    sources: unknown[] | null;
+    durationMs: number | null;
+    createdAt: string;
+  }>;
+};

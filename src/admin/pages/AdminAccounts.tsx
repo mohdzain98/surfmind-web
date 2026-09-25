@@ -17,6 +17,7 @@ import type { AccountDetails } from "../api";
 import { AdminApiError } from "../api";
 import { useAdminAuth } from "../adminAuth";
 import { formatNumber } from "../format";
+import AccountSearches from "../components/AccountSearches";
 import AdminConfirmDialog from "../components/AdminConfirmDialog";
 import {
   AdminToast,
@@ -278,6 +279,8 @@ export default function AdminAccounts() {
               ))}
             </div>
           </Panel>
+
+          <AccountSearches key={accountId} accountId={accountId} />
 
           <div className="grid gap-5 xl:grid-cols-[1.25fr_0.75fr]">
             <Panel className="p-5 sm:p-6">
