@@ -1,7 +1,5 @@
+import { CHROME_STORE_URL, EDGE_STORE_URL } from "../storeLinks";
 import { Link } from "react-router-dom";
-
-const CHROME_STORE_URL =
-  "https://chromewebstore.google.com/detail/surfmind-smarter-browsing/ladckalplikfcplbihpgfnlkonnpehkj";
 
 export default function Footer() {
   return (
@@ -32,6 +30,14 @@ export default function Footer() {
             className="hover:text-charcoal transition-colors"
           >
             Chrome Store
+          </a>
+          <a
+            href={EDGE_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-charcoal transition-colors"
+          >
+            Edge Add-ons
           </a>
         </div>
       </div>

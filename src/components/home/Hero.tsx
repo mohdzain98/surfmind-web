@@ -1,5 +1,5 @@
-const CHROME_STORE_URL =
-  "https://chromewebstore.google.com/detail/surfmind-smarter-browsing/ladckalplikfcplbihpgfnlkonnpehkj";
+import edgeIcon from "../../assets/edge.svg";
+import { CHROME_STORE_URL, EDGE_STORE_URL } from "../../storeLinks";
 
 function ChromeIcon() {
   return (
@@ -128,7 +128,7 @@ export default function Hero() {
       <div className="relative text-center py-24 px-6 max-w-3xl mx-auto">
         <span className="inline-flex items-center gap-2 text-xs font-medium text-sage border border-sage/40 rounded-full px-3 py-1 mb-8">
           <span className="w-1.5 h-1.5 rounded-full bg-sage inline-block" />
-          Chrome Extension
+          Chrome & Edge Extension
         </span>
 
         <h1 className="font-serif text-5xl sm:text-6xl font-semibold text-charcoal leading-tight mb-5">
@@ -142,7 +142,7 @@ export default function Hero() {
           you find any of them instantly — just describe what you remember.
         </p>
 
-        <div className="flex items-center justify-center">
+        <div className="flex flex-wrap items-center justify-center gap-3">
           <a
             href={CHROME_STORE_URL}
             target="_blank"
@@ -150,7 +150,16 @@ export default function Hero() {
             className="inline-flex items-center gap-2 bg-charcoal text-cream text-sm font-medium px-6 py-3 rounded-full hover:bg-charcoal/85 transition-colors"
           >
             <ChromeIcon />
-            Add to Chrome — it's free
+            Add to Chrome
+          </a>
+          <a
+            href={EDGE_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-charcoal text-cream text-sm font-medium px-6 py-3 rounded-full hover:bg-charcoal/85 transition-colors"
+          >
+            <img src={edgeIcon} alt="" aria-hidden="true" className="h-4 w-4" />
+            Add to Edge
           </a>
         </div>
       </div>

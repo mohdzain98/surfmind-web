@@ -1,5 +1,5 @@
-const CHROME_STORE_URL =
-  "https://chromewebstore.google.com/detail/surfmind-smarter-browsing/ladckalplikfcplbihpgfnlkonnpehkj";
+import edgeIcon from "../../assets/edge.svg";
+import { CHROME_STORE_URL, EDGE_STORE_URL } from "../../storeLinks";
 
 function ChromeIcon() {
   return (
@@ -20,15 +20,26 @@ export default function CtaBanner() {
           Install SurfMind in seconds and start building a searchable record of
           your browsing — for free.
         </p>
-        <a
-          href={CHROME_STORE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-charcoal text-cream text-sm font-medium px-7 py-3.5 rounded-full hover:bg-charcoal/85 transition-colors"
-        >
-          <ChromeIcon />
-          Add to Chrome — it's free
-        </a>
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <a
+            href={CHROME_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-charcoal text-cream text-sm font-medium px-7 py-3.5 rounded-full hover:bg-charcoal/85 transition-colors"
+          >
+            <ChromeIcon />
+            Add to Chrome
+          </a>
+          <a
+            href={EDGE_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-charcoal text-cream text-sm font-medium px-7 py-3.5 rounded-full hover:bg-charcoal/85 transition-colors"
+          >
+            <img src={edgeIcon} alt="" aria-hidden="true" className="h-4 w-4" />
+            Add to Edge
+          </a>
+        </div>
       </div>
     </section>
   );

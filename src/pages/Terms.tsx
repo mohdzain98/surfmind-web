@@ -47,8 +47,8 @@ export default function Terms() {
 
       <p className="text-sm text-charcoal/70 leading-relaxed mb-10">
         Please read these Terms of Service carefully before using the SurfMind
-        Chrome extension. By installing or using SurfMind, you agree to be bound
-        by these terms.
+        Chrome and Edge extension. By installing or using SurfMind, you agree to
+        be bound by these terms.
       </p>
 
       <Section title="1. Acceptance of Terms">
@@ -60,7 +60,7 @@ export default function Terms() {
       </Section>
 
       <Section title="2. Description of Service">
-        <p>SurfMind is a Chrome extension that:</p>
+        <p>SurfMind is a Chrome and Edge extension that:</p>
         <ul className="space-y-1.5 mt-2">
           <Li>
             Automatically tracks and logs websites you visit and bookmarks you
