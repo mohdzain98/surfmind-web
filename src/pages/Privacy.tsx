@@ -41,7 +41,7 @@ export default function Privacy() {
           Privacy Policy
         </h1>
         <p className="text-sm text-charcoal/50">
-          Effective Date: 4 September, 2026
+          Last updated: 3 November, 2026
         </p>
         <div className="h-px bg-clay/40 mt-6" />
       </div>
@@ -73,6 +73,11 @@ export default function Privacy() {
             this identifier.
           </Li>
           <Li>
+            The user-provided name assigned to each linked browser, such as
+            “Work Laptop.” SurfMind stores this name in association with the
+            anonymous browser identifier and sync account.
+          </Li>
+          <Li>
             Standard request information, such as an IP address, may be
             processed in server logs for security, reliability, and abuse
             prevention.
@@ -93,6 +98,10 @@ export default function Privacy() {
           <Li>
             To synchronize searchable data between browsers that you
             intentionally link with a one-time code.
+          </Li>
+          <Li>
+            To manage linked browsers and label cross-browser search results
+            using the names you assign to those browsers.
           </Li>
           <Li>
             To maintain, secure, troubleshoot, and improve the reliability of
@@ -246,6 +255,11 @@ export default function Privacy() {
             linked browsers.
           </Li>
           <Li>
+            Renaming a linked browser updates the name associated with its
+            anonymous browser identifier and sync account. Unlinking a browser
+            stops SurfMind from using that association for the shared account.
+          </Li>
+          <Li>
             Unlinking a browser stops that browser from using the shared account
             going forward; unlinking is separate from deleting data.
           </Li>
@@ -260,9 +274,9 @@ export default function Privacy() {
           </Li>
           <Li>
             Clear All Data removes SurfMind history, bookmarks, recent searches,
-            local settings, and the existing anonymous browser identifier. If
-            browsers are linked, this can remove shared data for every linked
-            browser.
+            local settings, linked-browser names and identifiers, and the
+            existing anonymous browser identifier. If browsers are linked, this
+            can remove shared data for every linked browser.
           </Li>
           <Li>
             Use Clear All Data before uninstalling SurfMind if you also want
@@ -277,7 +291,7 @@ export default function Privacy() {
         <ul className="space-y-1.5">
           <Li>
             We may update this Privacy Policy from time to time. We will notify
-            you of any changes by updating the "Effective Date" at the top of
+            you of any changes by updating the "Last updated" date at the top of
             this policy. We encourage you to review it periodically.
           </Li>
         </ul>
