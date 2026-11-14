@@ -144,13 +144,19 @@ export type LlmUsageResponse = {
 };
 
 export type SearchMetric = {
+  mode: "standard" | "fast";
   flag: "history" | "bookmark" | "combined" | string;
   totalSearches: number;
   avgDurationMs: number | null;
   maxDurationMs: number | null;
 };
 
-export type SearchMetricsResponse = { metrics: SearchMetric[] };
+export type SearchMetricsResponse = {
+  metrics: SearchMetric[];
+  totalSearches: number;
+  fastModeSearches: number;
+  fastModeUsers: number;
+};
 
 export type AccountDetails = {
   syncAccountId: number;
@@ -204,6 +210,8 @@ export type AccountSearchesResponse = {
     id: number;
     query: string;
     flag: string;
+    mode?: "standard" | "fast";
+    fastStrictness?: string | null;
     answer: string | null;
     sources: unknown[] | null;
     durationMs: number | null;

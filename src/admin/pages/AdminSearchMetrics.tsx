@@ -30,17 +30,13 @@ export default function AdminSearchMetrics() {
   const path = `/status/search-metrics${buildQuery({ since_days: days, limit: 200 })}`;
   const { data, loading, error, reload } =
     useAdminResource<SearchMetricsResponse>(path);
-  const totalSearches = (data?.metrics || []).reduce(
-    (total, metric) => total + metric.totalSearches,
-    0
-  );
 
   return (
     <div>
       <PageHeader
         eyebrow="Retrieval quality"
         title="Search metrics"
-        description="Search volume and response latency across History, Bookmarks, and Combined modes."
+        description="Search volume and latency by content type and Fast or Standard search mode."
         action={
           <div className="flex items-center gap-2">
             <label className="text-[11px] font-semibold text-charcoal/50">
@@ -77,18 +73,38 @@ export default function AdminSearchMetrics() {
         }
       />
 
-      {data?.metrics.length ? (
+      {data && !loading && !error ? (
+        <div className="mt-7 grid gap-4 sm:grid-cols-3">
+          {[
+            ["Total searches", data.totalSearches],
+            ["Fast searches", data.fastModeSearches],
+            ["Fast mode users", data.fastModeUsers],
+          ].map(([label, value]) => (
+            <Panel key={label} className="p-5">
+              <p className="text-xs text-charcoal/45">{label}</p>
+              <p className="mt-2 text-3xl font-semibold">
+                {typeof value === "number" ? formatNumber(value) : "—"}
+              </p>
+              <p className="mt-2 text-[11px] text-charcoal/40">
+                Full selected reporting window
+              </p>
+            </Panel>
+          ))}
+        </div>
+      ) : null}
+
+      {!loading && !error && data?.metrics.length ? (
         <div className="mt-7 grid gap-4 md:grid-cols-3">
           {data.metrics.map((metric) => {
             const Icon = FLAG_ICONS[metric.flag] || Layers3;
             return (
-              <Panel key={metric.flag} className="p-5">
+              <Panel key={`${metric.flag}-${metric.mode}`} className="p-5">
                 <div className="flex items-center justify-between">
                   <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-sage/12 text-sage">
                     <Icon className="h-4.5 w-4.5" />
                   </span>
                   <span className="text-[10px] font-semibold uppercase tracking-wider text-charcoal/35">
-                    {metric.flag}
+                    {metric.flag} · {metric.mode}
                   </span>
                 </div>
                 <p className="mt-5 text-3xl font-semibold tracking-tight">
@@ -128,7 +144,9 @@ export default function AdminSearchMetrics() {
         ) : null}
         {!loading && !error && data?.metrics.length ? (
           <div className="flex flex-col gap-2 px-5 py-4 text-xs text-charcoal/45 sm:flex-row sm:items-center sm:justify-between">
-            <span>{formatNumber(totalSearches)} searches across all modes</span>
+            <span>
+              {formatNumber(data.totalSearches)} searches across all modes
+            </span>
             <span>Missing legacy latency values are shown as —</span>
           </div>
         ) : null}

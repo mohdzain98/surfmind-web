@@ -54,6 +54,12 @@ function SearchPage({
                     {search.query}
                     <span className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[11px] font-normal text-charcoal/50">
                       <span className="capitalize">{search.flag}</span>
+                      <span className="capitalize">
+                        {search.mode ?? "standard"} mode
+                      </span>
+                      {search.mode === "fast" && search.fastStrictness ? (
+                        <span>Strictness: {search.fastStrictness}</span>
+                      ) : null}
                       <span>{formatDateTime(search.createdAt)}</span>
                       <span>Duration: {formatDuration(search.durationMs)}</span>
                     </span>
@@ -64,7 +70,10 @@ function SearchPage({
                         Answer
                       </h3>
                       <p className="mt-2 max-h-96 overflow-auto whitespace-pre-wrap break-words text-sm leading-6 text-charcoal/75">
-                        {search.answer || "No answer recorded."}
+                        {search.answer ||
+                          (search.mode === "fast"
+                            ? "Fast mode returns matching sources without a generated answer."
+                            : "No answer recorded.")}
                       </p>
                     </div>
                     <div>
