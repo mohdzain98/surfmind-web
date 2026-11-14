@@ -66,14 +66,20 @@ function HealthCard({
           <Icon className="h-4 w-4 text-charcoal/45" aria-hidden="true" />
           {name}
         </span>
-        <StatusPill ok={health.ok}>
-          {health.status ||
-            (health.ok
-              ? "Healthy"
-              : health.detail === "systemctl not available"
-                ? "Unavailable"
-                : "Issue")}
-        </StatusPill>
+        {health.detail === "systemctl not available" ? (
+          <span className="rounded-full bg-charcoal/5 px-2.5 py-1 text-[10px] font-semibold text-charcoal/55">
+            Unknown
+          </span>
+        ) : (
+          <StatusPill ok={health.ok}>
+            {health.status ||
+              (health.ok
+                ? "Healthy"
+                : health.detail === "systemctl not available"
+                  ? "Unavailable"
+                  : "Issue")}
+          </StatusPill>
+        )}
       </div>
       {name === "Redis" && health.ok ? (
         <dl className="mt-4 grid grid-cols-3 gap-2 text-center">
@@ -98,7 +104,9 @@ function HealthCard({
         </dl>
       ) : null}
       {!health.ok ? (
-        <p className="mt-3 break-words text-xs leading-5 text-red-600">
+        <p
+          className={`mt-3 break-words text-xs leading-5 ${health.detail === "systemctl not available" ? "text-charcoal/50" : "text-red-600"}`}
+        >
           {health.detail || health.status || "Service check failed."}
         </p>
       ) : null}
@@ -144,14 +152,21 @@ export default function AdminDashboard() {
   const bookmarkPages =
     stats?.total_pages_bookmark ?? stats?.totalPagesBookmark;
 
-  const allHealthy = health
+  const checks = health
     ? [
         health.postgres,
         health.pgvector,
         health.redis,
         ...Object.values(health.services ?? {}),
-      ].every((service) => service.ok)
-    : false;
+      ]
+    : [];
+  const hasUnknown = checks.some(
+    (service) => service.detail === "systemctl not available"
+  );
+  const hasIssue = checks.some(
+    (service) => !service.ok && service.detail !== "systemctl not available"
+  );
+  const allHealthy = checks.length > 0 && checks.every((service) => service.ok);
 
   return (
     <div>
@@ -224,9 +239,17 @@ export default function AdminDashboard() {
                   Each dependency is checked independently.
                 </p>
               </div>
-              <StatusPill ok={allHealthy}>
-                {allHealthy ? "All systems operational" : "Attention required"}
-              </StatusPill>
+              {hasUnknown && !hasIssue ? (
+                <span className="rounded-full bg-charcoal/5 px-3 py-1 text-xs text-charcoal/55">
+                  Some service statuses unknown
+                </span>
+              ) : (
+                <StatusPill ok={allHealthy}>
+                  {allHealthy
+                    ? "All systems operational"
+                    : "Attention required"}
+                </StatusPill>
+              )}
             </div>
             <div className="grid gap-3 md:grid-cols-3">
               <HealthCard
