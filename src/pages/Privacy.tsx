@@ -41,7 +41,7 @@ export default function Privacy() {
           Privacy Policy
         </h1>
         <p className="text-sm text-charcoal/50">
-          Last updated: 3 November, 2026
+          Last updated: 15 November, 2026
         </p>
         <div className="h-px bg-clay/40 mt-6" />
       </div>
@@ -287,7 +287,49 @@ export default function Privacy() {
         </ul>
       </Section>
 
-      <Section title="9. Changes to This Privacy Policy">
+      {/* Update this disclosure if backend LLM classification is introduced:
+          page text would then be sent to SurfMind servers and an LLM provider. */}
+      <Section title="9. Content Filtering">
+        <p>
+          To keep SurfMind from saving inappropriate or unsafe pages, we check
+          pages on your device before anything is saved for sync.
+        </p>
+        <p className="font-medium text-charcoal/80">What we check</p>
+        <ul className="space-y-1.5">
+          <Li>
+            The site's domain, compared against public blocklists of known
+            adult, malware, and phishing sites.
+          </Li>
+          <Li>
+            The page title, description, and any search-engine query, compared
+            against a list of explicit keywords.
+          </Li>
+        </ul>
+        <p className="font-medium text-charcoal/80">What happens to a match</p>
+        <ul className="space-y-1.5">
+          <Li>The page is marked as “flagged.”</Li>
+          <Li>
+            Flagged pages are not sent to our servers and are excluded from
+            search results.
+          </Li>
+          <Li>
+            On your device, we keep only the page's address and the flag, not
+            its content.
+          </Li>
+        </ul>
+        <p>
+          These checks run entirely in your browser. The page you visit, and
+          your searches, are not sent to us or to any third party to be checked.
+          The blocklists are downloaded periodically from a public source and
+          contain no information about you.
+        </p>
+        <p>
+          Filtering is best-effort. It catches known sites and common terms, but
+          it cannot identify every inappropriate or unsafe page.
+        </p>
+      </Section>
+
+      <Section title="10. Changes to This Privacy Policy">
         <ul className="space-y-1.5">
           <Li>
             We may update this Privacy Policy from time to time. We will notify
@@ -297,7 +339,7 @@ export default function Privacy() {
         </ul>
       </Section>
 
-      <Section title="10. Contact Us">
+      <Section title="11. Contact Us">
         <p>
           If you have any questions or concerns about this Privacy Policy,
           please contact us at{" "}
