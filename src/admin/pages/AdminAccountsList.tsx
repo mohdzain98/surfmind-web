@@ -192,6 +192,9 @@ export default function AdminAccountsList() {
               <thead className="border-b border-charcoal/8 bg-charcoal/[0.025] text-[10px] uppercase tracking-wider text-charcoal/40">
                 <tr>
                   <th className="px-5 py-3 font-semibold">Account</th>
+                  <th className="px-5 py-3 text-right font-semibold">
+                    Searches
+                  </th>
                   <SortableHeader
                     field="browser_count"
                     label="Browsers"
@@ -251,6 +254,9 @@ export default function AdminAccountsList() {
                             #{account.syncAccountId}
                           </span>
                         </div>
+                      </td>
+                      <td className="px-5 py-4 text-right text-sm font-semibold tabular-nums text-charcoal/70">
+                        {formatNumber(account.searchCount)}
                       </td>
                       <td className="px-5 py-4 text-xs text-charcoal/60">
                         <span className="inline-flex items-center gap-1.5">

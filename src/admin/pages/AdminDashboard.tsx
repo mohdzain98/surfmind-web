@@ -38,7 +38,7 @@ function StatCard({
         <div>
           <p className="text-xs font-medium text-charcoal/45">{label}</p>
           <p className="mt-2 text-3xl font-semibold tracking-tight text-charcoal">
-            {formatNumber(value)}
+            {value == null ? "—" : formatNumber(value)}
           </p>
           <p className="mt-1 text-[11px] text-charcoal/35">{detail}</p>
         </div>
@@ -226,6 +226,27 @@ export default function AdminDashboard() {
               value={bookmarkPages}
               detail="Saved across all accounts"
               Icon={Bookmark}
+            />
+          </div>
+
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            <StatCard
+              label="Categorization enabled"
+              value={
+                stats.categorization_enabled_accounts ??
+                stats.categorizationEnabledAccounts
+              }
+              detail="Accounts categorizing history pages"
+              Icon={Users}
+            />
+            <StatCard
+              label="Categorization refreshes"
+              value={
+                stats.categorization_refresh_count ??
+                stats.categorizationRefreshCount
+              }
+              detail="Lifetime manual refresh triggers across all accounts"
+              Icon={RefreshCw}
             />
           </div>
 

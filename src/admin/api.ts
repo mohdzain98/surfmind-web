@@ -95,6 +95,10 @@ export type HealthResponse = {
 };
 
 export type StatsResponse = {
+  categorization_enabled_accounts?: number;
+  categorization_refresh_count?: number;
+  categorizationEnabledAccounts?: number;
+  categorizationRefreshCount?: number;
   total_accounts?: number;
   linked_accounts?: number;
   total_pages_history?: number;
@@ -158,7 +162,17 @@ export type SearchMetricsResponse = {
   fastModeUsers: number;
 };
 
+export type AccountCategory = {
+  id: number;
+  name: string;
+  is_default: boolean;
+  page_count: number;
+};
+
 export type AccountDetails = {
+  categorizationEnabled?: boolean;
+  categorizationRefreshCount?: number;
+  categories?: AccountCategory[];
   syncAccountId: number;
   tier: string;
   browserCount: number;

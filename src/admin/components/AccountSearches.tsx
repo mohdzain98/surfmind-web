@@ -1,3 +1,4 @@
+import SearchSources from "./SearchSources";
 import { useState } from "react";
 import { buildQuery, type AccountSearchesResponse } from "../api";
 import { formatDateTime, formatDuration, formatNumber } from "../format";
@@ -81,9 +82,7 @@ function SearchPage({
                         Sources ({search.sources?.length ?? 0})
                       </h3>
                       {search.sources?.length ? (
-                        <pre className="mt-2 max-h-72 overflow-auto whitespace-pre-wrap break-words rounded-lg bg-charcoal/[0.035] p-3 text-[11px] leading-5 text-charcoal/65">
-                          {JSON.stringify(search.sources, null, 2)}
-                        </pre>
+                        <SearchSources sources={search.sources} />
                       ) : (
                         <p className="mt-2 text-xs text-charcoal/45">
                           No sources recorded.

@@ -17,6 +17,7 @@ import type { AccountDetails } from "../api";
 import { AdminApiError } from "../api";
 import { useAdminAuth } from "../adminAuth";
 import { formatNumber } from "../format";
+import AccountCategorization from "../components/AccountCategorization";
 import AccountSearches from "../components/AccountSearches";
 import AdminConfirmDialog from "../components/AdminConfirmDialog";
 import {
@@ -279,6 +280,8 @@ export default function AdminAccounts() {
               ))}
             </div>
           </Panel>
+
+          <AccountCategorization account={account} />
 
           <AccountSearches key={accountId} accountId={accountId} />
 
