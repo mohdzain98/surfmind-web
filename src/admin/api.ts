@@ -95,6 +95,10 @@ export type HealthResponse = {
 };
 
 export type StatsResponse = {
+  categorization_enabled_accounts?: number;
+  categorization_refresh_count?: number;
+  categorizationEnabledAccounts?: number;
+  categorizationRefreshCount?: number;
   total_accounts?: number;
   linked_accounts?: number;
   total_pages_history?: number;
@@ -144,15 +148,31 @@ export type LlmUsageResponse = {
 };
 
 export type SearchMetric = {
+  mode: "standard" | "fast";
   flag: "history" | "bookmark" | "combined" | string;
   totalSearches: number;
   avgDurationMs: number | null;
   maxDurationMs: number | null;
 };
 
-export type SearchMetricsResponse = { metrics: SearchMetric[] };
+export type SearchMetricsResponse = {
+  metrics: SearchMetric[];
+  totalSearches: number;
+  fastModeSearches: number;
+  fastModeUsers: number;
+};
+
+export type AccountCategory = {
+  id: number;
+  name: string;
+  is_default: boolean;
+  page_count: number;
+};
 
 export type AccountDetails = {
+  categorizationEnabled?: boolean;
+  categorizationRefreshCount?: number;
+  categories?: AccountCategory[];
   syncAccountId: number;
   tier: string;
   browserCount: number;
@@ -204,6 +224,8 @@ export type AccountSearchesResponse = {
     id: number;
     query: string;
     flag: string;
+    mode?: "standard" | "fast";
+    fastStrictness?: string | null;
     answer: string | null;
     sources: unknown[] | null;
     durationMs: number | null;

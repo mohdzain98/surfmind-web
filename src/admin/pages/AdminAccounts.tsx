@@ -17,6 +17,7 @@ import type { AccountDetails } from "../api";
 import { AdminApiError } from "../api";
 import { useAdminAuth } from "../adminAuth";
 import { formatNumber } from "../format";
+import AccountCategorization from "../components/AccountCategorization";
 import AccountSearches from "../components/AccountSearches";
 import AdminConfirmDialog from "../components/AdminConfirmDialog";
 import {
@@ -280,6 +281,8 @@ export default function AdminAccounts() {
             </div>
           </Panel>
 
+          <AccountCategorization account={account} />
+
           <AccountSearches key={accountId} accountId={accountId} />
 
           <div className="grid gap-5 xl:grid-cols-[1.25fr_0.75fr]">
@@ -299,10 +302,11 @@ export default function AdminAccounts() {
                     </code>
                     <button
                       type="button"
+                      disabled={!account.isLinked}
                       onClick={() =>
                         setPendingAction({ type: "unlink", browserUuid })
                       }
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-charcoal/10 px-3 py-2 text-[11px] font-semibold text-charcoal/60 hover:border-red-200 hover:bg-red-50 hover:text-red-700"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-charcoal/10 px-3 py-2 text-[11px] font-semibold text-charcoal/60 hover:border-red-200 hover:bg-red-50 hover:text-red-700 disabled:cursor-not-allowed disabled:opacity-35"
                     >
                       <Link2Off className="h-3.5 w-3.5" /> Unlink
                     </button>
@@ -345,8 +349,9 @@ export default function AdminAccounts() {
                 </button>
                 <button
                   type="button"
+                  disabled={account.isLinked}
                   onClick={() => setPendingAction({ type: "delete" })}
-                  className="mt-2 inline-flex items-center gap-2 rounded-xl border border-red-200 bg-red-50/70 px-4 py-2.5 text-left text-xs font-semibold text-red-700 hover:bg-red-100/70"
+                  className="mt-2 inline-flex items-center gap-2 rounded-xl border border-red-200 bg-red-50/70 px-4 py-2.5 text-left text-xs font-semibold text-red-700 hover:bg-red-100/70 disabled:cursor-not-allowed disabled:opacity-35"
                 >
                   <UserRoundX className="h-3.5 w-3.5" aria-hidden="true" />
                   Delete account permanently
